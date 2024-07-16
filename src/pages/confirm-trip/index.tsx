@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import {
   MapPin,
   Calendar,
@@ -5,13 +6,18 @@ import {
   ArrowRight,
   Settings2,
 } from "lucide-react";
-import { FormEvent, useState } from "react";
-import { Button } from "./components/button";
-import { Modal } from "./components/modal";
 
-export function App() {
+import { FormEvent, useState } from "react";
+import { Button } from "../../components/button";
+import { ModalAddInviteGuest } from "./modal-add-invite-guest";
+import { ModalConfirmTrip } from "./modal-confirm-trip";
+
+export function ConfirmTrip() {
+  const navigate = useNavigate();
+
   const [isGuestInputOpen, setIsGuestInputOpen] = useState(false);
   const [isGuestInputOpenModal, setIsGuestInputOpenModal] = useState(false);
+  const [isOpenModalConfirmTrip, setIsOpenModalConfirmTrip] = useState(false);
   const [emailsToInvite, setEmailsToInvite] = useState<string[]>([]);
 
   function handlerGuestInput() {
@@ -43,6 +49,14 @@ export function App() {
     setEmailsToInvite(newArray);
   }
 
+  function handlerOpenModalCofirmTrip() {
+    setIsOpenModalConfirmTrip(!isOpenModalConfirmTrip);
+  }
+  function handlerCofirmTrip(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    return navigate(`/trips/123`);
+  }
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
@@ -104,15 +118,22 @@ export function App() {
                 onClick={handlerGuestModal}
               >
                 <UserRoundPlus className="size-5 text-zinc-400" />
-                <span className="bg-transparent text-lg placeholder-zinc-400 outline-none flex items-start">
-                  Quem estará na viagem?
-                </span>
+
+                {emailsToInvite.length > 0 ? (
+                  <span className="bg-transparent text-lg placeholder-zinc-100 outline-none flex items-start">
+                    {emailsToInvite.length} pessoa(s) convidada(s)
+                  </span>
+                ) : (
+                  <span className="bg-transparent text-lg placeholder-zinc-400 outline-none flex items-start">
+                    Selcionar convidados
+                  </span>
+                )}
               </button>
 
               <div className="w-px h-6 bg-zinc-800" />
 
               <Button
-                handlerButton={() => console.log("Teste")}
+                handlerButton={handlerOpenModalCofirmTrip}
                 type="button"
                 title="Confirmar viagem"
                 style="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
@@ -134,14 +155,19 @@ export function App() {
           </a>
           .
         </p>
-        <Modal
-          isviewModal={isGuestInputOpenModal}
-          handlerOpenModal={handlerGuestModal}
-          handlerConfirm={(e: FormEvent<HTMLFormElement>) =>
-            handlerConfirmModal(e)
-          }
-          emailsToInvite={emailsToInvite}
+
+        <ModalAddInviteGuest
+          isGuestInputOpenModal={isGuestInputOpenModal}
+          handlerGuestModal={handlerGuestModal}
           handlerRemove={handlerRemove}
+          handlerConfirmModal={handlerConfirmModal}
+          emailsToInvite={emailsToInvite}
+        />
+
+        <ModalConfirmTrip
+          isOpenModalConfirmTrip={isOpenModalConfirmTrip}
+          handlerCofirmTrip={handlerCofirmTrip}
+          handlerOpenModalCofirmTrip={handlerOpenModalCofirmTrip}
         />
       </div>
     </div>

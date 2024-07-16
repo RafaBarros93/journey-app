@@ -1,7 +1,7 @@
 export type IButtonProps = {
   title: string;
   handlerButton?: () => void;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   style: string;
   type: "submit" | "reset" | "button" | undefined;
 };
