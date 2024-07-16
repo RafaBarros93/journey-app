@@ -1,16 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import {
-  MapPin,
-  Calendar,
-  UserRoundPlus,
-  ArrowRight,
-  Settings2,
-} from "lucide-react";
-
 import { FormEvent, useState } from "react";
-import { Button } from "../../components/button";
 import { ModalAddInviteGuest } from "./modal-add-invite-guest";
 import { ModalConfirmTrip } from "./modal-confirm-trip";
+import { InputTrip } from "./input-trip";
+import { InputGuest } from "./input-invite-guest";
 
 export function ConfirmTrip() {
   const navigate = useNavigate();
@@ -59,6 +52,20 @@ export function ConfirmTrip() {
   }
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
+      <ModalAddInviteGuest
+        isGuestInputOpenModal={isGuestInputOpenModal}
+        handlerGuestModal={handlerGuestModal}
+        handlerRemove={handlerRemove}
+        handlerConfirmModal={handlerConfirmModal}
+        emailsToInvite={emailsToInvite}
+      />
+
+      <ModalConfirmTrip
+        isOpenModalConfirmTrip={isOpenModalConfirmTrip}
+        handlerCofirmTrip={handlerCofirmTrip}
+        handlerOpenModalCofirmTrip={handlerOpenModalCofirmTrip}
+      />
+
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
         <div className="flex flex-col items-center gap-3">
           <img src="/logo.svg" alt="plann.er"></img>
@@ -69,78 +76,17 @@ export function ConfirmTrip() {
         </div>
 
         <div className="space-y-4">
-          <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-            <div className="flex items-center gap-2 flex-1 ">
-              <MapPin className="size-5 text-zinc-400" />
-              <input
-                disabled={isGuestInputOpen}
-                type="text"
-                placeholder="Para onde você vai?"
-                className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
-              />
-            </div>
+          <InputTrip
+            isGuestInputOpen={isGuestInputOpen}
+            handlerGuestInput={handlerGuestInput}
+          />
 
-            <div className="flex items-center gap-2">
-              <Calendar className="size-5 text-zinc-400" />
-              <input
-                disabled={isGuestInputOpen}
-                type="text"
-                placeholder="Quando?"
-                className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none "
-              />
-            </div>
-
-            <div className="w-px h-6 bg-zinc-800" />
-
-            {!isGuestInputOpen ? (
-              <Button
-                type="button"
-                handlerButton={handlerGuestInput}
-                title="Continuar"
-                icon={<ArrowRight />}
-                style="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
-              />
-            ) : (
-              <Button
-                type="button"
-                handlerButton={handlerGuestInput}
-                title="Alterar local/data"
-                icon={<Settings2 />}
-                style="bg-zinc-800 text-zinc-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700"
-              />
-            )}
-          </div>
-
-          {isGuestInputOpen && (
-            <div className="h-16 bg-zinc-900 px-4 rounded-xl flex items-center shadow-shape gap-3">
-              <button
-                className="flex items-center gap-2 flex-1 "
-                onClick={handlerGuestModal}
-              >
-                <UserRoundPlus className="size-5 text-zinc-400" />
-
-                {emailsToInvite.length > 0 ? (
-                  <span className="bg-transparent text-lg placeholder-zinc-100 outline-none flex items-start">
-                    {emailsToInvite.length} pessoa(s) convidada(s)
-                  </span>
-                ) : (
-                  <span className="bg-transparent text-lg placeholder-zinc-400 outline-none flex items-start">
-                    Selcionar convidados
-                  </span>
-                )}
-              </button>
-
-              <div className="w-px h-6 bg-zinc-800" />
-
-              <Button
-                handlerButton={handlerOpenModalCofirmTrip}
-                type="button"
-                title="Confirmar viagem"
-                style="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
-                icon={<ArrowRight />}
-              />
-            </div>
-          )}
+          <InputGuest
+            isGuestInputOpen={isGuestInputOpen}
+            totalInivtes={emailsToInvite.length}
+            handlerOpenModalCofirmTrip={handlerOpenModalCofirmTrip}
+            handlerGuestModal={handlerGuestModal}
+          />
         </div>
 
         <p className="text-sm text-zinc-500">
@@ -155,20 +101,6 @@ export function ConfirmTrip() {
           </a>
           .
         </p>
-
-        <ModalAddInviteGuest
-          isGuestInputOpenModal={isGuestInputOpenModal}
-          handlerGuestModal={handlerGuestModal}
-          handlerRemove={handlerRemove}
-          handlerConfirmModal={handlerConfirmModal}
-          emailsToInvite={emailsToInvite}
-        />
-
-        <ModalConfirmTrip
-          isOpenModalConfirmTrip={isOpenModalConfirmTrip}
-          handlerCofirmTrip={handlerCofirmTrip}
-          handlerOpenModalCofirmTrip={handlerOpenModalCofirmTrip}
-        />
       </div>
     </div>
   );

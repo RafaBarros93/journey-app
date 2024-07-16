@@ -3,11 +3,11 @@ import { Modal } from "../../../components/modal";
 import { Button } from "../../../components/button";
 import { FormEvent } from "react";
 
-export type ModalConfirmTripProps = {
+export interface ModalConfirmTripProps {
   isOpenModalConfirmTrip: boolean;
   handlerOpenModalCofirmTrip: () => void;
   handlerCofirmTrip: (event: FormEvent<HTMLFormElement>) => void;
-};
+}
 
 export function ModalConfirmTrip(props: ModalConfirmTripProps) {
   return (

@@ -3,13 +3,13 @@ import { Modal } from "../../../components/modal";
 import { AtSign, Plus, X } from "lucide-react";
 import { Button } from "../../../components/button";
 
-export type ModalAddInviteGuestProps = {
+export interface ModalAddInviteGuestProps {
   emailsToInvite: string[];
   isGuestInputOpenModal: boolean;
   handlerGuestModal: () => void;
   handlerRemove: (index: number) => void;
   handlerConfirmModal: (event: FormEvent<HTMLFormElement>) => void;
-};
+}
 
 export function ModalAddInviteGuest(props: ModalAddInviteGuestProps) {
   return (
