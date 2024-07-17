@@ -4,6 +4,7 @@ export type IButtonProps = {
   icon?: JSX.Element;
   style: string;
   type: "submit" | "reset" | "button" | undefined;
+  isLeftIcon?: boolean;
 };
 
 export function Button(props: IButtonProps) {
@@ -14,8 +15,9 @@ export function Button(props: IButtonProps) {
         onClick={props.handlerButton}
         type={props.type}
       >
+        {props.isLeftIcon && props.icon}
         {props.title}
-        {props.icon}
+        {!props.isLeftIcon && props.icon}
       </button>
     </>
   );
