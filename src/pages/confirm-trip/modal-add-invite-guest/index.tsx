@@ -51,12 +51,10 @@ export function ModalAddInviteGuest(props: ModalAddInviteGuestProps) {
           />
         </div>
 
-        <Button
-          type="submit"
-          title="Confirmar"
-          icon={<Plus />}
-          style="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
-        />
+        <Button type="submit" variant="primary">
+          Confirmar
+          <Plus />
+        </Button>
       </form>
     </Modal>
   );

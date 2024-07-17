@@ -48,11 +48,9 @@ export function ModalConfirmTrip(props: ModalConfirmTripProps) {
           />
         </div>
 
-        <Button
-          type="submit"
-          title="Confirmar criação da viagem"
-          style="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium hover:bg-lime-400 text-center"
-        />
+        <Button type="submit" variant="primary" size="full">
+          Confirmar criação da viagem
+        </Button>
       </form>
     </Modal>
   );

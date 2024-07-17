@@ -35,21 +35,15 @@ export function InputTrip({
       <div className="w-px h-6 bg-zinc-800" />
 
       {!isGuestInputOpen ? (
-        <Button
-          type="button"
-          handlerButton={handlerGuestInput}
-          title="Continuar"
-          icon={<ArrowRight />}
-          style="bg-lime-300 text-lime-950 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-lime-400"
-        />
+        <Button type="button" onClick={handlerGuestInput} variant="primary">
+          Continuar
+          <ArrowRight />
+        </Button>
       ) : (
-        <Button
-          type="button"
-          handlerButton={handlerGuestInput}
-          title="Alterar local/data"
-          icon={<Settings2 />}
-          style="bg-zinc-800 text-zinc-200 rounded-lg px-5 py-2 font-medium flex items-center gap-2 hover:bg-zinc-700"
-        />
+        <Button type="button" onClick={handlerGuestInput} variant="secondary">
+          Alterar local/data
+          <Settings2 />
+        </Button>
       )}
     </div>
   );
