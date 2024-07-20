@@ -1,20 +1,35 @@
 import { X } from "lucide-react";
 import { ReactNode } from "react";
+import { tv, VariantProps } from "tailwind-variants";
 
-export type IModalProps = {
+const modalariants = tv({
+  base: "w-[640px] rounded-xl px-5 py-6 shadow-shape bg-zinc-900 grid gap-2",
+
+  variants: {
+    size: {
+      default: "w-[640px] ",
+      auto: "w-auto",
+    },
+  },
+  defaultVariants: {
+    size: "default",
+  },
+});
+
+export interface IModalProps extends VariantProps<typeof modalariants> {
   isviewModal: boolean;
   handlerOpenModal: () => void;
   children?: ReactNode;
   title?: string;
-  text: string | JSX.Element;
-};
+  text?: string | JSX.Element;
+}
 
-export function Modal(props: IModalProps) {
+export function Modal({ size, ...props }: IModalProps) {
   return (
     <>
       {props.isviewModal && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center">
-          <div className="w-[640px] rounded-xl px-5 py-6 shadow-shape bg-zinc-900 grid gap-2">
+          <div className={modalariants({ size })}>
             <div className="grid gap-2">
               <div className="flex items-start justify-between">
                 <h2 className="text-lg font-semibold text-justify ">

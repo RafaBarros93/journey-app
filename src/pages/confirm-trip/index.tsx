@@ -50,6 +50,7 @@ export function ConfirmTrip() {
 
     return navigate(`/trips/123`);
   }
+
   return (
     <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
       <ModalAddInviteGuest

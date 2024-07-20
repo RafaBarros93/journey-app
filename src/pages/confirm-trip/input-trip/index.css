@@ -1,0 +1,14 @@
+/* custom-daypicker.css */
+.my-day-picker {
+  --rdp-accent-color: #4a90e2;
+  --rdp-background-color: #f0f8ff;
+}
+
+.my-day-picker .rdp-day_selected {
+  background-color: #bef264;
+  color: #a1a1aa;
+}
+
+.my-day-picker .rdp-button:hover:not([disabled]):not(.rdp-day_selected) {
+  background-color: #a1a1aa;
+}

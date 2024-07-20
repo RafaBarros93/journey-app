@@ -9,3 +9,14 @@
 input {
   color-scheme: dark;
 }
+
+:root {
+  --rdp-accent-color: indigo;
+  --rdp-background-color: gray;
+}
+
+[data-theme="dark"] .rdp,
+.dark .rdp {
+  --rdp-accent-color: var(--rdp-accent-color-dark);
+  --rdp-background-color: var(--rdp-background-color-dark);
+}
