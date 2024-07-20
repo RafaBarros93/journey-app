@@ -2,7 +2,8 @@ import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../../components/button";
 import { Modal } from "../../../components/modal";
 import { useState } from "react";
-import { addDays } from "date-fns";
+import { addDays, format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import "./index.css";
@@ -22,11 +23,20 @@ export function InputTrip({
   handlerGuestInput,
 }: InputTripProps) {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-
   const [range, setRange] = useState<DateRange | undefined>(initialRange);
-
+  let dispaleydDate = null;
   function handlerDatePicker() {
     setIsDatePickerOpen(!isDatePickerOpen);
+  }
+
+  if (range?.to && range.from) {
+    dispaleydDate = range
+      ? `${format(range.from, "d")} a ${format(range.to, "d")} de  ${format(
+          range.to,
+          "MMMM",
+          { locale: ptBR }
+        )}`
+      : null;
   }
 
   return (
@@ -61,7 +71,10 @@ export function InputTrip({
         onClick={handlerDatePicker}
       >
         <Calendar className="size-5 text-zinc-400" />
-        <span className="text-lg text-zinc-400 w-40">Quando?</span>
+        <span className="text-lg text-zinc-400 w-40">
+          {" "}
+          {dispaleydDate || "Quando?"}{" "}
+        </span>
       </button>
 
       <div className="w-px h-6 bg-zinc-800" />
