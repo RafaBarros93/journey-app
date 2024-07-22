@@ -2,6 +2,7 @@ import { Mail, User } from "lucide-react";
 import { Modal } from "../../../components/modal";
 import { Button } from "../../../components/button";
 import { FormEvent } from "react";
+import useRangeStore from "../../../stores/create-trip.store";
 
 export interface ModalConfirmTripProps {
   isOpenModalConfirmTrip: boolean;
@@ -10,6 +11,8 @@ export interface ModalConfirmTripProps {
 }
 
 export function ModalConfirmTrip(props: ModalConfirmTripProps) {
+  const { name, setName, email, setEmail } = useRangeStore();
+
   return (
     <Modal
       isviewModal={props.isOpenModalConfirmTrip}
@@ -34,6 +37,8 @@ export function ModalConfirmTrip(props: ModalConfirmTripProps) {
           <input
             name="name"
             placeholder="Seu nome completo"
+            value={name}
+            onChange={({ target: { value } }) => setName(value)}
             className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"
           />
         </div>
@@ -43,6 +48,8 @@ export function ModalConfirmTrip(props: ModalConfirmTripProps) {
           <input
             type="text"
             name="email"
+            value={email}
+            onChange={({ target: { value } }) => setEmail(value)}
             placeholder="Seu e-mail pessoal"
             className="bg-transparent text-lg placeholder-zinc-400 w-40 outline-none flex-1"
           />

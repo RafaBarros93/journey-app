@@ -1,33 +1,30 @@
 import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../../components/button";
 import { Modal } from "../../../components/modal";
-import { useState } from "react";
-import { addDays, format } from "date-fns";
+import { ChangeEvent, useState } from "react";
+import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import "./index.css";
+import useRangeStore from "../../../stores/create-trip.store";
 
 interface InputTripProps {
   isGuestInputOpen: boolean;
   handlerGuestInput: () => void;
 }
 
-const initialRange: DateRange = {
-  from: new Date(),
-  to: addDays(new Date(), 4),
-};
-
 export function InputTrip({
   isGuestInputOpen,
   handlerGuestInput,
 }: InputTripProps) {
   const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
-  const [range, setRange] = useState<DateRange | undefined>(initialRange);
+
   let dispaleydDate = null;
   function handlerDatePicker() {
     setIsDatePickerOpen(!isDatePickerOpen);
   }
+  const { range, setRange, destination, setDetination } = useRangeStore();
 
   if (range?.to && range.from) {
     dispaleydDate = range
@@ -37,6 +34,16 @@ export function InputTrip({
           { locale: ptBR }
         )}`
       : null;
+  }
+
+  function handlerDate(range: DateRange | undefined) {
+    if (range) setRange(range);
+  }
+
+  function handlerChangeDestination({
+    target: { value },
+  }: ChangeEvent<HTMLInputElement>) {
+    setDetination(value);
   }
 
   return (
@@ -51,7 +58,7 @@ export function InputTrip({
           className="my-day-picker"
           mode="range"
           selected={range}
-          onSelect={setRange}
+          onSelect={(range) => handlerDate(range)}
         />
       </Modal>
 
@@ -60,8 +67,10 @@ export function InputTrip({
         <input
           disabled={isGuestInputOpen}
           type="text"
+          value={destination}
           placeholder="Para onde você vai?"
           className="bg-transparent text-lg placeholder-zinc-400 outline-none flex-1"
+          onChange={(e) => handlerChangeDestination(e)}
         />
       </div>
 

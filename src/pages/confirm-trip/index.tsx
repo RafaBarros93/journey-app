@@ -4,14 +4,24 @@ import { ModalAddInviteGuest } from "./modal-add-invite-guest";
 import { ModalConfirmTrip } from "./modal-confirm-trip";
 import { InputTrip } from "./input-trip";
 import { InputGuest } from "./input-invite-guest";
+import useRangeStore from "../../stores/create-trip.store";
 
 export function ConfirmTrip() {
   const navigate = useNavigate();
 
+  const {
+    emailsToInvite,
+    setEmailsToInvite,
+    removeEmailByIndex,
+    email,
+    name,
+    range,
+    destination,
+  } = useRangeStore();
+
   const [isGuestInputOpen, setIsGuestInputOpen] = useState(false);
   const [isGuestInputOpenModal, setIsGuestInputOpenModal] = useState(false);
   const [isOpenModalConfirmTrip, setIsOpenModalConfirmTrip] = useState(false);
-  const [emailsToInvite, setEmailsToInvite] = useState<string[]>([]);
 
   function handlerGuestInput() {
     setIsGuestInputOpen(!isGuestInputOpen);
@@ -32,14 +42,13 @@ export function ConfirmTrip() {
 
     if (emailsToInvite.includes(email)) return;
 
-    setEmailsToInvite([...emailsToInvite, email]);
+    setEmailsToInvite(email);
 
     event.currentTarget.reset();
   }
 
   function handlerRemove(index: number) {
-    const newArray = emailsToInvite.filter((_, i) => index !== i);
-    setEmailsToInvite(newArray);
+    removeEmailByIndex(index);
   }
 
   function handlerOpenModalCofirmTrip() {
