@@ -1,4 +1,4 @@
-import { Mail, User } from "lucide-react";
+import { Loader, Mail, User } from "lucide-react";
 import { Modal } from "../../../components/modal";
 import { Button } from "../../../components/button";
 import { FormEvent } from "react";
@@ -8,6 +8,7 @@ export interface ModalConfirmTripProps {
   isOpenModalConfirmTrip: boolean;
   handlerOpenModalCofirmTrip: () => void;
   handlerCofirmTrip: (event: FormEvent<HTMLFormElement>) => void;
+  isViewModalLoading: boolean;
 }
 
 export function ModalConfirmTrip(props: ModalConfirmTripProps) {
@@ -55,9 +56,16 @@ export function ModalConfirmTrip(props: ModalConfirmTripProps) {
           />
         </div>
 
-        <Button type="submit" variant="primary" size="full">
-          Confirmar criação da viagem
-        </Button>
+        {props.isViewModalLoading ? (
+          <Button type="button" variant="terciary" size="full" disabled>
+            <Loader className="animate-spin h-5 w-5 mr-3" />
+            Salvando...
+          </Button>
+        ) : (
+          <Button type="submit" variant="primary" size="full">
+            Confirmar criação da viagem
+          </Button>
+        )}
       </form>
     </Modal>
   );

@@ -18,7 +18,7 @@ const modalariants = tv({
 
 export interface IModalProps extends VariantProps<typeof modalariants> {
   isviewModal: boolean;
-  handlerOpenModal: () => void;
+  handlerOpenModal?: () => void;
   children?: ReactNode;
   title?: string;
   text?: string | JSX.Element;
@@ -35,10 +35,12 @@ export function Modal({ size, ...props }: IModalProps) {
                 <h2 className="text-lg font-semibold text-justify ">
                   {props.title}
                 </h2>
-                <X
-                  className="cursor-pointer size-5 text-zinc-400"
-                  onClick={props.handlerOpenModal}
-                ></X>
+                {props.handlerOpenModal && (
+                  <X
+                    className="cursor-pointer size-5 text-zinc-400"
+                    onClick={props.handlerOpenModal}
+                  ></X>
+                )}
               </div>
               <p className="text-sm text-zinc-400 text-start">{props.text}</p>
             </div>

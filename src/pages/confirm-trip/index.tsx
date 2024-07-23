@@ -5,6 +5,10 @@ import { ModalConfirmTrip } from "./modal-confirm-trip";
 import { InputTrip } from "./input-trip";
 import { InputGuest } from "./input-invite-guest";
 import useRangeStore from "../../stores/create-trip.store";
+import { CreateTripPropsRequest } from "../../../interfaces/CreateTripPropsRequest";
+import { QeuriesTrip } from "../../../service/query-trip";
+import { Loader } from "lucide-react";
+Loader;
 
 export function ConfirmTrip() {
   const navigate = useNavigate();
@@ -19,9 +23,12 @@ export function ConfirmTrip() {
     destination,
   } = useRangeStore();
 
+  const { creatTrip } = QeuriesTrip();
+
   const [isGuestInputOpen, setIsGuestInputOpen] = useState(false);
   const [isGuestInputOpenModal, setIsGuestInputOpenModal] = useState(false);
   const [isOpenModalConfirmTrip, setIsOpenModalConfirmTrip] = useState(false);
+  const [isViewModalLoading, setIsViewModalLoding] = useState(false);
 
   function handlerGuestInput() {
     setIsGuestInputOpen(!isGuestInputOpen);
@@ -54,14 +61,32 @@ export function ConfirmTrip() {
   function handlerOpenModalCofirmTrip() {
     setIsOpenModalConfirmTrip(!isOpenModalConfirmTrip);
   }
-  function handlerCofirmTrip(event: FormEvent<HTMLFormElement>) {
+
+  async function handlerCofirmTrip(event: FormEvent<HTMLFormElement>) {
+    setIsViewModalLoding(!isViewModalLoading);
     event.preventDefault();
 
-    return navigate(`/trips/123`);
+    try {
+      const newTrip: CreateTripPropsRequest = {
+        destination,
+        starts_at: range.from!,
+        ends_at: range.to!,
+        owner_name: name!,
+        owner_email: email!,
+        emails_to_invite: emailsToInvite!,
+      };
+      setIsViewModalLoding(!isViewModalLoading);
+      const id = await creatTrip(newTrip);
+
+      return navigate(`/trips/${id}`);
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
   }
 
   return (
-    <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center">
+    <div className="h-screen flex items-center justify-center bg-pattern bg-no-repeat bg-center ">
       <ModalAddInviteGuest
         isGuestInputOpenModal={isGuestInputOpenModal}
         handlerGuestModal={handlerGuestModal}
@@ -74,6 +99,7 @@ export function ConfirmTrip() {
         isOpenModalConfirmTrip={isOpenModalConfirmTrip}
         handlerCofirmTrip={handlerCofirmTrip}
         handlerOpenModalCofirmTrip={handlerOpenModalCofirmTrip}
+        isViewModalLoading={isViewModalLoading}
       />
 
       <div className="max-w-3xl w-full px-6 text-center space-y-10">
