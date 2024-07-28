@@ -7,7 +7,7 @@ import { ptBR } from "date-fns/locale";
 import { DateRange, DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import "./index.css";
-import useRangeStore from "../../../stores/create-trip.store";
+import useCreateTripStore from "../../../stores/create-trip.store";
 
 interface InputTripProps {
   isGuestInputOpen: boolean;
@@ -24,7 +24,7 @@ export function InputTrip({
   function handlerDatePicker() {
     setIsDatePickerOpen(!isDatePickerOpen);
   }
-  const { range, setRange, destination, setDetination } = useRangeStore();
+  const { range, setRange, destination, setDetination } = useCreateTripStore();
 
   if (range?.to && range.from) {
     dispaleydDate = range

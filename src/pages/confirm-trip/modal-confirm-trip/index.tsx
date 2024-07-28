@@ -2,7 +2,7 @@ import { Loader, Mail, User } from "lucide-react";
 import { Modal } from "../../../components/modal";
 import { Button } from "../../../components/button";
 import { FormEvent } from "react";
-import useRangeStore from "../../../stores/create-trip.store";
+import useCreateTripStore from "../../../stores/create-trip.store";
 
 export interface ModalConfirmTripProps {
   isOpenModalConfirmTrip: boolean;
@@ -12,7 +12,7 @@ export interface ModalConfirmTripProps {
 }
 
 export function ModalConfirmTrip(props: ModalConfirmTripProps) {
-  const { name, setName, email, setEmail } = useRangeStore();
+  const { name, setName, email, setEmail } = useCreateTripStore();
 
   return (
     <Modal

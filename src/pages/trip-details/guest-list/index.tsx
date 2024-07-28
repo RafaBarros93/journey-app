@@ -1,12 +1,53 @@
 import { CircleCheck, CircleDashed, UserCog } from "lucide-react";
 import { Button } from "../../../components/button";
+import { useParams } from "react-router-dom";
+import useTripDetailStore from "../../../stores/trip-details.store";
+import { QeuriesTrip } from "../../../../service/query-trip";
+import { useEffect } from "react";
 
 export function GuestList() {
+  const { tripId } = useParams();
+
+  const { setParticipants, participants } = useTripDetailStore();
+
+  const { getParcipantByTripId } = QeuriesTrip();
+
+  useEffect(() => {
+    const getTrip = async () => {
+      const { participants } = await getParcipantByTripId(tripId!);
+
+      setParticipants(participants);
+    };
+
+    getTrip();
+  }, [tripId]);
+
   return (
     <div className="space-y-6">
       <h2 className="font-semibold text-xl">Convidados</h2>
 
-      <div className="flex items-center justify-between gap-4">
+      {participants?.map((participant) => (
+        <>
+          <div className="flex items-center justify-between gap-4">
+            <div className="space-y-1.5">
+              <span className="block font-medium text-zinc-100">
+                {participant.name}
+              </span>
+              <span className="block text-sm text-zinc-400 truncate">
+                {participant.email}
+              </span>
+            </div>
+
+            {participant.is_confirmed ? (
+              <CircleCheck className="siz-5 text-lime-300" />
+            ) : (
+              <CircleDashed className="siz-5 text-zinc-400" />
+            )}
+          </div>
+        </>
+      ))}
+
+      {/*  <div className="flex items-center justify-between gap-4">
         <div className="space-y-1.5">
           <span className="block font-medium text-zinc-100">
             Dr. Rita Pacocha
@@ -17,9 +58,9 @@ export function GuestList() {
         </div>
 
         <CircleCheck className="siz-5 text-lime-300" />
-      </div>
+      </div> */}
 
-      <div className="flex items-center justify-between gap-4">
+      {/* <div className="flex items-center justify-between gap-4">
         <div className="space-y-1.5">
           <span className="block font-medium text-zinc-100">Jessica White</span>
           <span className="block text-sm text-zinc-400 truncate">
@@ -29,7 +70,7 @@ export function GuestList() {
 
         <CircleDashed className="siz-5 text-zinc-400" />
       </div>
-
+ */}
       <Button type="button" variant="secondary" size="full">
         <UserCog />
         Gerenciar convidados

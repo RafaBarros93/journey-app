@@ -4,7 +4,7 @@ import { ModalAddInviteGuest } from "./modal-add-invite-guest";
 import { ModalConfirmTrip } from "./modal-confirm-trip";
 import { InputTrip } from "./input-trip";
 import { InputGuest } from "./input-invite-guest";
-import useRangeStore from "../../stores/create-trip.store";
+import useCreateTripStore from "../../stores/create-trip.store";
 import { CreateTripPropsRequest } from "../../../interfaces/CreateTripPropsRequest";
 import { QeuriesTrip } from "../../../service/query-trip";
 import { Loader } from "lucide-react";
@@ -21,7 +21,7 @@ export function ConfirmTrip() {
     name,
     range,
     destination,
-  } = useRangeStore();
+  } = useCreateTripStore();
 
   const { creatTrip } = QeuriesTrip();
 

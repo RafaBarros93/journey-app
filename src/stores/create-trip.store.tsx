@@ -18,7 +18,7 @@ type Action = {
   setEmail: (email: CreateTripProps["email"]) => void;
 };
 
-const useRangeStore = create<CreateTripProps & Action>()((set, get) => ({
+const useCreateTripStore = create<CreateTripProps & Action>()((set, get) => ({
   range: {
     from: undefined,
     to: undefined,
@@ -43,4 +43,4 @@ const useRangeStore = create<CreateTripProps & Action>()((set, get) => ({
   setEmail: (email) => set({ email }),
 }));
 
-export default useRangeStore;
+export default useCreateTripStore;
