@@ -49,7 +49,7 @@ export function Activities({ handlerOpeModalActivity }: ActivitiesProps) {
                         <span className="text-zinc-100">{a.title}</span>
 
                         <p className="text-zinc-400 text-sm ml-auto">
-                          {format(a.occurs_at, "hh:mm").concat("h")}
+                          {format(a.occurs_at, "HH:mm").concat("h")}
                         </p>
                       </div>
                     ))}

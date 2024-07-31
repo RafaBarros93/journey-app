@@ -57,6 +57,7 @@ export function TripDetails() {
 
         setId(id);
       }
+      handlerOpeModalActivity();
     } catch (error) {
       console.log(error);
       /* alert(error); */

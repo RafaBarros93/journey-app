@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { GetLinksResponse } from "../../interfaces/GetLinksResponse";
 
 export type TripDetailProps = {
   trip?: {
@@ -34,15 +35,23 @@ export type ListActivitiesProps = {
   listActivities?: ActivitiesProps[];
 };
 
+export type LinksProps = {
+  links?: GetLinksResponse[];
+};
+
 type Action = {
   setTripDetails: (trip: TripDetailProps["trip"]) => void;
   setParticipants: (trip: ParticipantsDetails["participants"]) => void;
-
   setActivities: (listActivities: ListActivitiesProps) => void;
+  setLinks: (links: LinksProps) => void;
 };
 
 const useTripDetailStore = create<
-  TripDetailProps & ParticipantsDetails & Action & ListActivitiesProps
+  TripDetailProps &
+    ParticipantsDetails &
+    Action &
+    ListActivitiesProps &
+    LinksProps
 >()((set) => ({
   setTripDetails: (trip) => {
     return set({ trip });
@@ -50,6 +59,7 @@ const useTripDetailStore = create<
   isViewModalLoading: false,
   setParticipants: (participants) => set({ participants }),
   setActivities: (state) => set({ listActivities: [...state.listActivities!] }),
+  setLinks: (links) => set({ links: [...links.links!] }),
 }));
 
 export default useTripDetailStore;

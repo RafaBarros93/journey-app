@@ -3,6 +3,8 @@ import { Modal } from "../../../components/modal";
 import { Button } from "../../../components/button";
 import { FormEvent } from "react";
 import useCreateTripStore from "../../../stores/create-trip.store";
+import { format } from "date-fns";
+import { ptBR } from "date-fns/locale";
 
 export interface ModalConfirmTripProps {
   isOpenModalConfirmTrip: boolean;
@@ -12,7 +14,20 @@ export interface ModalConfirmTripProps {
 }
 
 export function ModalConfirmTrip(props: ModalConfirmTripProps) {
-  const { name, setName, email, setEmail } = useCreateTripStore();
+  const { name, setName, email, setEmail, destination, range } =
+    useCreateTripStore();
+
+  let dispaleydDate = null;
+
+  if (range?.to && range.from) {
+    dispaleydDate = range
+      ? `${format(range.from, "d")} a ${format(range.to, "d")} de  ${format(
+          range.to,
+          "MMMM",
+          { locale: ptBR }
+        )}`
+      : null;
+  }
 
   return (
     <Modal
@@ -23,11 +38,9 @@ export function ModalConfirmTrip(props: ModalConfirmTripProps) {
         <>
           {" "}
           Para concluir a criação da viagem para{" "}
-          <span className="text-zinc-100 font-semibold">Florianópolis</span>,
+          <span className="text-zinc-100 font-semibold">{destination}</span>,
           Brasil nas datas de{" "}
-          <span className="text-zinc-100 font-semibold">
-            16 a 27 de Agosto de 2024
-          </span>{" "}
+          <span className="text-zinc-100 font-semibold">{dispaleydDate}</span>{" "}
           preencha seus dados abaixo:
         </>
       }

@@ -1,10 +1,12 @@
 import { CreateActivityRequest } from "../../interfaces/CreateActivityRequest";
 import { CreateActivityResponse } from "../../interfaces/CreateActivityResponse";
+import { CreateLinkRequest } from "../../interfaces/CreateLinkRequest";
 import { CreateTripPropsRequest } from "../../interfaces/CreateTripPropsRequest";
 import { CreateTripPropsResponse } from "../../interfaces/CreateTripPropsResponse";
 import { GetActivitesResponse } from "../../interfaces/GetActivitesResponse";
 import { ParticipantsDetails } from "../../interfaces/GetParticpantsDetailsResponde";
 import { GetTripResponse } from "../../interfaces/GetTripDetailsResponse";
+import { LinksProps } from "../stores/trip-details.store";
 
 import { api } from "./axios";
 
@@ -50,11 +52,28 @@ export function QeuriesTrip() {
     return data;
   };
 
+  const createLink = async (
+    tripId: string,
+    data: CreateLinkRequest
+  ): Promise<CreateActivityResponse> => {
+    const { data: id } = await api.post(`/trips/${tripId}/links`, data);
+
+    return id;
+  };
+
+  const getLinksByTripId = async (tripId: string): Promise<LinksProps> => {
+    const { data } = await api.get(`/trips/${tripId}/links`);
+
+    return data;
+  };
+
   return {
     creatTrip,
     getTripById,
     getParcipantByTripId,
     createActivity,
     getActivityByTripId,
+    createLink,
+    getLinksByTripId,
   };
 }
