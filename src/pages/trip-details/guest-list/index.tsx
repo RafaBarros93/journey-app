@@ -2,7 +2,7 @@ import { CircleCheck, CircleDashed, UserCog } from "lucide-react";
 import { Button } from "../../../components/button";
 import { useParams } from "react-router-dom";
 import useTripDetailStore from "../../../stores/trip-details.store";
-import { QeuriesTrip } from "../../../../service/query-trip";
+import { QeuriesTrip } from "../../../service/query-trip";
 import { useEffect } from "react";
 
 export function GuestList() {
@@ -26,12 +26,12 @@ export function GuestList() {
     <div className="space-y-6">
       <h2 className="font-semibold text-xl">Convidados</h2>
 
-      {participants?.map((participant) => (
+      {participants?.map((participant, index) => (
         <>
-          <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center justify-between gap-4" key={index}>
             <div className="space-y-1.5">
               <span className="block font-medium text-zinc-100">
-                {participant.name}
+                {participant.name ?? `Conviadado ${index}`}
               </span>
               <span className="block text-sm text-zinc-400 truncate">
                 {participant.email}
@@ -39,9 +39,9 @@ export function GuestList() {
             </div>
 
             {participant.is_confirmed ? (
-              <CircleCheck className="siz-5 text-lime-300" />
+              <CircleCheck className="size-5 shrink-0 text-green-400" />
             ) : (
-              <CircleDashed className="siz-5 text-zinc-400" />
+              <CircleDashed className="size-5 shrink-0 text-zinc-400" />
             )}
           </div>
         </>

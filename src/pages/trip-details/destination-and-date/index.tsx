@@ -2,7 +2,7 @@ import { Calendar, MapPin, Settings2 } from "lucide-react";
 import { Button } from "../../../components/button";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { QeuriesTrip } from "../../../../service/query-trip";
+import { QeuriesTrip } from "../../../service/query-trip";
 import useTripDetailStore from "../../../stores/trip-details.store";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";

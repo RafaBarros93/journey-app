@@ -23,18 +23,33 @@ export type ParticipantsDetails = {
   ];
 };
 
+export type ActivitiesProps = {
+  date?: string;
+  activities?: [
+    { id: string; title: string; occurs_at: string; trip_id: string }
+  ];
+};
+
+export type ListActivitiesProps = {
+  listActivities?: ActivitiesProps[];
+};
+
 type Action = {
   setTripDetails: (trip: TripDetailProps["trip"]) => void;
   setParticipants: (trip: ParticipantsDetails["participants"]) => void;
+
+  setActivities: (listActivities: ListActivitiesProps) => void;
 };
 
 const useTripDetailStore = create<
-  TripDetailProps & ParticipantsDetails & Action
+  TripDetailProps & ParticipantsDetails & Action & ListActivitiesProps
 >()((set) => ({
   setTripDetails: (trip) => {
     return set({ trip });
   },
+  isViewModalLoading: false,
   setParticipants: (participants) => set({ participants }),
+  setActivities: (state) => set({ listActivities: [...state.listActivities!] }),
 }));
 
 export default useTripDetailStore;

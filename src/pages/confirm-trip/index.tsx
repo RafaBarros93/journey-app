@@ -6,7 +6,7 @@ import { InputTrip } from "./input-trip";
 import { InputGuest } from "./input-invite-guest";
 import useCreateTripStore from "../../stores/create-trip.store";
 import { CreateTripPropsRequest } from "../../../interfaces/CreateTripPropsRequest";
-import { QeuriesTrip } from "../../../service/query-trip";
+import { QeuriesTrip } from "../../service/query-trip";
 import { Loader } from "lucide-react";
 Loader;
 

@@ -1,11 +1,35 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { ModalCreateActivity } from "./modal-activity";
 import { ImportantLink } from "./important-links";
 import { GuestList } from "./guest-list";
 import { Activities } from "./activities";
 import { DestinationAndDate } from "./destination-and-date";
+import { CreateActivityRequest } from "../../../interfaces/CreateActivityRequest";
+import { useParams } from "react-router-dom";
+import { QeuriesTrip } from "../../service/query-trip";
+import useTripDetailStore from "../../stores/trip-details.store";
+import { CreateActivityResponse } from "../../../interfaces/CreateActivityResponse";
 
 export function TripDetails() {
+  const { tripId } = useParams();
+  const { setActivities } = useTripDetailStore();
+  const [id, setId] = useState<CreateActivityResponse | string>("");
+  const { getActivityByTripId } = QeuriesTrip();
+
+  useEffect(() => {
+    const getlistActivities = async () => {
+      const listActivities = await getActivityByTripId(tripId!);
+
+      console.log("List", listActivities);
+
+      setActivities(listActivities);
+    };
+
+    getlistActivities();
+  }, [id]);
+
+  const { createActivity } = QeuriesTrip();
+
   const [isCreateActivityModalOpen, setIsCreateActivityModalOpen] =
     useState(false);
 
@@ -13,8 +37,30 @@ export function TripDetails() {
     setIsCreateActivityModalOpen(!isCreateActivityModalOpen);
   }
 
-  function handlerCofirmActivity(event: FormEvent<HTMLFormElement>) {
+  async function handlerCofirmActivity(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
+    try {
+      const data = new FormData(event.currentTarget);
+
+      const title = data.get("title");
+
+      const occurs_at = data.get("occurs_at");
+
+      if (title && occurs_at) {
+        const activity: CreateActivityRequest = {
+          title,
+          occurs_at,
+        };
+
+        const id = await createActivity(tripId!, activity);
+
+        setId(id);
+      }
+    } catch (error) {
+      console.log(error);
+      /* alert(error); */
+    }
   }
 
   return (
