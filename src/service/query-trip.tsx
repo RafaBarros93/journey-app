@@ -6,6 +6,7 @@ import { CreateTripPropsResponse } from "../../interfaces/CreateTripPropsRespons
 import { GetActivitesResponse } from "../../interfaces/GetActivitesResponse";
 import { ParticipantsDetails } from "../../interfaces/GetParticpantsDetailsResponde";
 import { GetTripResponse } from "../../interfaces/GetTripDetailsResponse";
+import { UpdateTripRequest } from "../../interfaces/UpdateTripRequest";
 import { LinksProps } from "../stores/trip-details.store";
 
 import { api } from "./axios";
@@ -26,6 +27,9 @@ export function QeuriesTrip() {
 
     return data;
   };
+
+  const updateTrip = async (tripId: string, data: UpdateTripRequest) =>
+    api.put(`/trips/${tripId}`, data);
 
   const getParcipantByTripId = async (
     tripId: string
@@ -75,5 +79,6 @@ export function QeuriesTrip() {
     getActivityByTripId,
     createLink,
     getLinksByTripId,
+    updateTrip,
   };
 }

@@ -1,10 +1,11 @@
 import { create } from "zustand";
 import { GetLinksResponse } from "../../interfaces/GetLinksResponse";
+import { ChangeEvent } from "react";
 
 export type TripDetailProps = {
   trip?: {
     id: string;
-    destination: string;
+    destination: string | ChangeEvent<HTMLInputElement> | undefined;
     starts_at: string;
     ends_at: string;
     is_confirmed: boolean;

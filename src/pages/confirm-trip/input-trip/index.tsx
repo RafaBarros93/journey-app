@@ -24,7 +24,7 @@ export function InputTrip({
   function handlerDatePicker() {
     setIsDatePickerOpen(!isDatePickerOpen);
   }
-  const { range, setRange, destination, setDetination } = useCreateTripStore();
+  const { range, setRange, destination, setDestination } = useCreateTripStore();
 
   if (range?.to && range.from) {
     dispaleydDate = range
@@ -43,7 +43,7 @@ export function InputTrip({
   function handlerChangeDestination({
     target: { value },
   }: ChangeEvent<HTMLInputElement>) {
-    setDetination(value);
+    setDestination(value);
   }
 
   return (

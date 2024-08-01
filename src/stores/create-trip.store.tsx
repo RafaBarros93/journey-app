@@ -11,7 +11,7 @@ type CreateTripProps = {
 
 type Action = {
   setRange: (range: CreateTripProps["range"]) => void;
-  setDetination: (destination: CreateTripProps["destination"]) => void;
+  setDestination: (destination: CreateTripProps["destination"]) => void;
   setEmailsToInvite: (email: string) => void;
   removeEmailByIndex: (index: number) => void;
   setName: (name: CreateTripProps["name"]) => void;
@@ -25,7 +25,7 @@ const useCreateTripStore = create<CreateTripProps & Action>()((set, get) => ({
   },
   setRange: (range) => set({ range }),
   destination: "",
-  setDetination: (destination) => set({ destination }),
+  setDestination: (destination) => set({ destination }),
   emailsToInvite: [],
   setEmailsToInvite: (email: string) => {
     const emailsToInvite = get().emailsToInvite;
