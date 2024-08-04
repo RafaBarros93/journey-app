@@ -1,4 +1,4 @@
-import { ArrowRight, Calendar, MapPin, Settings2 } from "lucide-react";
+import { Calendar, MapPin, Settings2, RefreshCcw } from "lucide-react";
 import { Button } from "../../../components/button";
 import { useParams } from "react-router-dom";
 import { ChangeEvent, useEffect, useState } from "react";
@@ -142,8 +142,8 @@ export function DestinationAndDate() {
           </Button>
         ) : (
           <Button type="button" onClick={handlerGuestInput} variant="primary">
-            Salvar
-            <ArrowRight />
+            Atualizar
+            <RefreshCcw />
           </Button>
         )}
       </div>
