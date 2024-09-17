@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>README - Nome do Projeto</title>
+ 
 </head>
 <body>
 
   <header>
-    <h1>Nome do Projeto</h1>
-    <p>Descrição curta do projeto. Explique o que faz e os principais recursos.</p>
+    <h1>Journey App</h1>
+    <p>Aplicativo para agendar viagens e atividades.</p>
   </header>
 
   <section id="requisitos">
