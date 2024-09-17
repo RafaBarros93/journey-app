@@ -26,7 +26,6 @@
     <p>Para iniciar o servidor de desenvolvimento:</p>
     <p>Com <strong>npm</strong>:</p>
     <pre><code>npm run dev</code></pre>
-
     <p>O projeto estará acessível em <a href="http://localhost:5173">http://localhost:5173</a>.</p>
 
   </section>
