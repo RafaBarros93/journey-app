@@ -34,9 +34,8 @@
     <h2>Tecnologias utilizadas</h2>
     <ul>
       <li><a href="https://reactjs.org/">React</a></li>
-      <li><a href="https://vitejs.dev/">Vite</a></li>
-      <li><a href="https://zustand-demo.pmnd.rs/">Zustand</a></li>
-      <li><a href="https://tailwindcss.com/">Tailwind</a></li>
+      <li><a href="https://fastify.dev/">Fastify</a></li>
+      <li><a href="https://nodemailer.com/">Nodemailer</a></li>
     </ul>
   </section>
 
