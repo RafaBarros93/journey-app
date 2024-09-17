@@ -10,7 +10,7 @@
 
   <header>
     <h1>Journey App</h1>
-    <p>Aplicativo para agendar viagens e atividades desáfio do bootcamp da.</p>
+    <p>Aplicativo para agendar viagens e atividades desáfio do bootcamp da RocketSeat.</p>
   </header>
 
   <section id="requisitos">
@@ -35,7 +35,8 @@
     <ul>
       <li><a href="https://reactjs.org/">React</a></li>
       <li><a href="https://vitejs.dev/">Vite</a></li>
-      <li>(Adicionar outras bibliotecas, ferramentas ou tecnologias utilizadas)</li>
+      <li><a href="https://zustand-demo.pmnd.rs/">Zustand</a></li>
+      <li><a href="https://tailwindcss.com/">Tailwind</a></li>
     </ul>
   </section>
 
