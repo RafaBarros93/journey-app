@@ -10,7 +10,7 @@
 
   <header>
     <h1>Journey App</h1>
-    <p>Aplicativo para agendar viagens e atividades desáfio do bootcamp.</p>
+    <p>Aplicativo para agendar viagens e atividades desáfio do bootcamp da.</p>
   </header>
 
   <section id="requisitos">
@@ -21,25 +21,6 @@
     </ul>
   </section>
 
-  <section id="instalacao">
-    <h2>Instalação</h2>
-    <ol>
-      <li>Clone o repositório:</li>
-      <pre><code>git clone https://github.com/seu-usuario/seu-repositorio.git</code></pre>
-
-      <li>Entre no diretório do projeto:</li>
-      <pre><code>cd seu-repositorio</code></pre>
-
-      <li>Instale as dependências:</li>
-      <p>Com <strong>npm</strong>:</p>
-      <pre><code>npm install</code></pre>
-
-      <p>Ou com <strong>yarn</strong>:</p>
-      <pre><code>yarn</code></pre>
-    </ol>
-
-  </section>
-
   <section id="desenvolvimento">
     <h2>Execução em ambiente de desenvolvimento</h2>
     <p>Para iniciar o servidor de desenvolvimento:</p>
@@ -48,41 +29,6 @@
 
     <p>O projeto estará acessível em <a href="http://localhost:5173">http://localhost:5173</a>.</p>
 
-  </section>
-
-  <section id="build-producao">
-    <h2>Build para produção</h2>
-    <p>Para compilar o projeto em modo de produção:</p>
-    <p>Com <strong>npm</strong>:</p>
-    <pre><code>npm run build</code></pre>
-
-    <p>Ou com <strong>yarn</strong>:</p>
-    <pre><code>yarn build</code></pre>
-
-    <p>Os arquivos de build estarão na pasta <code>dist</code>.</p>
-
-  </section>
-
-  <section id="serve-build">
-    <h2>Servir o build</h2>
-    <p>Após o build, você pode servir a aplicação estática com:</p>
-    <p>Com <strong>npm</strong>:</p>
-    <pre><code>npm run serve</code></pre>
-
-    <p>Ou com <strong>yarn</strong>:</p>
-    <pre><code>yarn serve</code></pre>
-
-    <p>A aplicação será servida em <a href="http://localhost:4173">http://localhost:4173</a>.</p>
-
-  </section>
-
-  <section id="scripts">
-    <h2>Scripts disponíveis</h2>
-    <ul>
-      <li><code>npm run dev</code> / <code>yarn dev</code>: Inicia o servidor de desenvolvimento.</li>
-      <li><code>npm run build</code> / <code>yarn build</code>: Gera os arquivos otimizados para produção.</li>
-      <li><code>npm run serve</code> / <code>yarn serve</cSode>: Serve os arquivos de produção localmente.</li>
-    </ul>
   </section>
 
   <section id="tecnologias">
