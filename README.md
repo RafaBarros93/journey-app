@@ -10,7 +10,7 @@
 
   <header>
     <h1>Journey App</h1>
-    <p>Aplicativo para agendar viagens e atividades.</p>
+    <p>Aplicativo para agendar viagens e atividades desáfio do bootcamp.</p>
   </header>
 
   <section id="requisitos">
@@ -37,6 +37,7 @@
       <p>Ou com <strong>yarn</strong>:</p>
       <pre><code>yarn</code></pre>
     </ol>
+
   </section>
 
   <section id="desenvolvimento">
@@ -45,10 +46,8 @@
     <p>Com <strong>npm</strong>:</p>
     <pre><code>npm run dev</code></pre>
 
-    <p>Ou com <strong>yarn</strong>:</p>
-    <pre><code>yarn dev</code></pre>
-
     <p>O projeto estará acessível em <a href="http://localhost:5173">http://localhost:5173</a>.</p>
+
   </section>
 
   <section id="build-producao">
@@ -61,6 +60,7 @@
     <pre><code>yarn build</code></pre>
 
     <p>Os arquivos de build estarão na pasta <code>dist</code>.</p>
+
   </section>
 
   <section id="serve-build">
@@ -73,21 +73,7 @@
     <pre><code>yarn serve</code></pre>
 
     <p>A aplicação será servida em <a href="http://localhost:4173">http://localhost:4173</a>.</p>
-  </section>
 
-  <section id="estrutura">
-    <h2>Estrutura de pastas</h2>
-    <pre><code>.
-├── public/          # Arquivos públicos
-├── src/             # Código-fonte da aplicação
-│   ├── assets/      # Assets como imagens, ícones, etc.
-│   ├── components/  # Componentes React
-│   ├── App.jsx      # Componente principal
-│   └── main.jsx     # Ponto de entrada do React
-├── index.html       # HTML principal
-├── vite.config.js   # Configurações do Vite
-└── package.json     # Dependências e scripts do projeto
-</code></pre>
   </section>
 
   <section id="scripts">
@@ -95,7 +81,7 @@
     <ul>
       <li><code>npm run dev</code> / <code>yarn dev</code>: Inicia o servidor de desenvolvimento.</li>
       <li><code>npm run build</code> / <code>yarn build</code>: Gera os arquivos otimizados para produção.</li>
-      <li><code>npm run serve</code> / <code>yarn serve</code>: Serve os arquivos de produção localmente.</li>
+      <li><code>npm run serve</code> / <code>yarn serve</cSode>: Serve os arquivos de produção localmente.</li>
     </ul>
   </section>
 
